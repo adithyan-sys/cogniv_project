@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Student Answer Evaluation</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f6f9;
+      margin: 0;
+      padding: 50px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .container {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 500px;
+      text-align: center;
+    }
+
+    h1 {
+      color: #333;
+    }
+
+    input[type="file"] {
+      margin: 20px 0;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #3498db;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #2980b9;
+    }
+
+    .result {
+      display: none;
+      margin-top: 20px;
+      background-color: #ecf0f1;
+      padding: 15px;
+      border-radius: 8px;
+    }
+
+    .download-btn {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 10px 15px;
+      background-color: #2ecc71;
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+    }
+
+    .download-btn:hover {
+      background-color: #27ae60;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Evaluate Student Answer</h1>
+    <input type="file" accept=".pdf,.jpg,.png" />
+    <br />
+    <button onclick="showResult()">Evaluate</button>
+
+    <div class="result" id="resultBox">
+      <p><strong>Score:</strong> --/20</p>
+      <p><strong>Feedback:</strong> --</p>
+      <a href="#" class="download-btn" download>Download Report</a>
+    </div>
+  </div>
+
+  <script>
+    async function showResult() {
+      const fileInput = document.querySelector('input[type="file"]');
+      if (!fileInput.files[0]) {
+        alert('Please select a file');
+        return;
+      }
+
+      const formData = new FormData();
+      formData.append('file', fileInput.files[0]);
+
+      try {
+        const response = await fetch('/evaluate', {
+          method: 'POST',
+          body: formData
+        });
+        const result = await response.json();
+
+        if (result.error) {
+          alert(result.error);
+          return;
+        }
+
+        const resultBox = document.getElementById('resultBox');
+        resultBox.innerHTML = `
+          <p><strong>Score:</strong> ${result.score}/20</p>
+          <p><strong>Feedback:</strong> ${result.feedback}</p>
+          <a href="${result.reportUrl}" class="download-btn" download>Download Report</a>
+        `;
+        resultBox.style.display = 'block';
+      } catch (error) {
+        console.error('Error:', error);
+        alert('Failed to evaluate the answer');
+      }
+    }
+  </script>
+</body>
+</html>
