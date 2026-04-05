@@ -64,7 +64,7 @@ The system is specially trained on answer scripts written by **different student
 - **Computer Vision**: EasyOCR / Tesseract / PaddleOCR
 - **NLP & Cognitive Layer**: Hugging Face Transformers / Google Gemini 1.5 / Llama-3 / BERT
 - **Machine Learning**: Scikit-learn + Sentence Transformers
-- **Frontend**: HTML + CSS + JavaScript (or React)
+- **Frontend**: HTML + CSS + JavaScript 
 - **Database**: SQLite / MySQL
 - **Deployment**: Local / Render / Railway / AWS
 
