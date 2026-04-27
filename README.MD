@@ -4,7 +4,7 @@
 ![Python](https://img.shields.io/badge/Python-3.9%2B-blue)
 ![AI](https://img.shields.io/badge/AI-NLP%20%26%20Computer%20Vision-orange)
 
-**A Cognitive Computing based project** that automatically evaluates handwritten and digital answer sheets using Artificial Intelligence, replacing manual correction by invigilators/teachers.
+**A Cognitive Computing based project** that automatically evaluates handwritten and digital answer sheets using Artificial Intelligence, replacing manual correction by invigilators/teachers
 
 ---
 
