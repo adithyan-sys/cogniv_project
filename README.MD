@@ -56,7 +56,7 @@ The system is specially trained on answer scripts written by **different student
 5. Cognitive scoring engine assigns marks + generates feedback
 6. Teacher can review & override marks (human-in-the-loop)
 
----
+--
 
 ## 🛠️ Tech Stack
 
